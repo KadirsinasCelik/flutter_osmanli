@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       _quantityController.text = '';
     }
     showModalBottomSheet(
-      backgroundColor: Colors.red,
+      backgroundColor: CustomTheme.lightTheme.primaryColor,
       context: ctx,
       elevation: 5,
       isScrollControlled: true,
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(hintText: 'Konu Başlığı'),
+                  decoration: const InputDecoration(hintText: 'Not Başlığı'),
                 ),
               ),
             ),
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                 child: TextField(
                   controller: _quantityController,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: 'Konu İçeriği'),
+                  decoration: const InputDecoration(hintText: 'Not İçeriği'),
                 ),
               ),
             ),
