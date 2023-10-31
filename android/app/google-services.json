@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1092149925470",
+    "firebase_url": "https://osmanliansiklopedisi-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "osmanliansiklopedisi",
+    "storage_bucket": "osmanliansiklopedisi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092149925470:android:44665fe822ec88d262c6cf",
+        "android_client_info": {
+          "package_name": "com.example.flutter_osmanli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092149925470-7gmai4m987n5nbcn595k15d3b705v69c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5TH2YeMl0dDJvCiUwrSE8BgcNt9sIYFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092149925470-7gmai4m987n5nbcn595k15d3b705v69c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
