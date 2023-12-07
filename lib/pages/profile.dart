@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
     if (mounted) {
       if (widget.auth.currentUser == null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  TabbBar()));
+            context, MaterialPageRoute(builder: (context) =>  const TabbBar()));
       }
       quizDatabase = QuizDatabase();
       getQuestionPoint();
@@ -52,14 +52,14 @@ class _ProfileState extends State<Profile> {
                       ))),
           leading: IconButton(
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  TabbBar())),
+                  MaterialPageRoute(builder: (context) =>  const TabbBar())),
               icon: const Icon(Icons.home)),
           actions: [
             IconButton(
                 onPressed: () {
                   widget.controller.SignOut();
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  TabbBar()));
+                      MaterialPageRoute(builder: (context) =>  const TabbBar()));
                 },
                 icon: const Icon(Icons.exit_to_app))
           ],

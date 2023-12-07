@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_osmanli/pages/admin.dart';
 import 'package:flutter_osmanli/pages/profile.dart';
 import 'package:flutter_osmanli/utilities/constants.dart';
 
 import '../controller/authController.dart';
-
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key, required this.controller});
@@ -51,10 +52,11 @@ class _SignInState extends State<SignIn> {
                       prefixIcon:
                           const Icon(Icons.email_sharp, color: Colors.white70),
                       hintText: "Mail adresinizi giriniz",
-                      hintStyle: const TextStyle(color: Colors.white, fontSize: 15),
+                      hintStyle:
+                          const TextStyle(color: Colors.white, fontSize: 15),
                       labelText: "Mail",
-                      labelStyle:
-                          const TextStyle(color: Colors.cyanAccent, fontSize: 15),
+                      labelStyle: const TextStyle(
+                          color: Colors.cyanAccent, fontSize: 15),
                       fillColor: Colors.black38,
                       filled: true,
                       border: OutlineInputBorder(
@@ -78,12 +80,14 @@ class _SignInState extends State<SignIn> {
                       enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.black),
                           borderRadius: BorderRadius.circular(40)),
-                      prefixIcon: const Icon(Icons.key_sharp, color: Colors.white70),
+                      prefixIcon:
+                          const Icon(Icons.key_sharp, color: Colors.white70),
                       labelText: "Şifre",
-                      labelStyle:
-                          const TextStyle(color: Colors.cyanAccent, fontSize: 15),
+                      labelStyle: const TextStyle(
+                          color: Colors.cyanAccent, fontSize: 15),
                       hintText: "Şifrenizi giriniz",
-                      hintStyle: const TextStyle(color: Colors.white, fontSize: 15),
+                      hintStyle:
+                          const TextStyle(color: Colors.white, fontSize: 15),
                       fillColor: Colors.black38,
                       filled: true,
                       border: OutlineInputBorder(
@@ -126,14 +130,46 @@ class _SignInState extends State<SignIn> {
                                           content: Text(
                                               "Böyle bir kullanıcı bulunamadı !")));
                                 } else {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Profile(
-                                                auth: value,
-                                                controller: widget.controller,
-                                              )),
-                                      (route) => false);
+                                  var firebaseAuth = value;
+
+                                  FirebaseFirestore.instance
+                                      .collection("admins")
+                                      .get()
+                                      .then((value) {
+                                    if (value.docs.isNotEmpty) {
+                                      for (int i = 0;
+                                          i < value.docs.length;
+                                          i++) {
+                                        if (value.docs[i].exists) {
+                                          var data = value.docs[i].data();
+                                          if (firebaseAuth.currentUser !=
+                                                  null &&
+                                              data.entries.first.value ==
+                                                  firebaseAuth
+                                                      .currentUser!.uid) {
+                                            Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                       Admin()),
+                                              (route) => false,
+                                            );
+                                            return;
+                                          }
+                                        }
+                                      }
+                                    } else {
+                                      Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Profile(
+                                                    auth: firebaseAuth,
+                                                    controller:
+                                                        widget.controller,
+                                                  )),
+                                          (route) => false);
+                                    }
+                                  });
                                 }
                               });
                             }
@@ -167,22 +203,22 @@ class _SignInState extends State<SignIn> {
                                   .SignUp(emailController.text.toString(),
                                       passwordController.text.toString())
                                   .then((value) {
-
-                                    if (value.currentUser==null) { //hata için yazdım
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(content: Text("Gerekli alanları doğru formatta doldurunuz"))
-                                      );
-                                      
-                                    }else {
-                                      Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Profile(
-                                              auth: value,
-                                              controller: widget.controller,
-                                            )),
-                                    (route) => false);
-                                    }
+                                if (value.currentUser == null) {
+                                  //hata için yazdım
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              "Gerekli alanları doğru formatta doldurunuz")));
+                                } else {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Profile(
+                                                auth: value,
+                                                controller: widget.controller,
+                                              )),
+                                      (route) => false);
+                                }
                               });
                             }
                           },

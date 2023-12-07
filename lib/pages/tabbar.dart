@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_osmanli/alarm_manager.dart';
 import 'package:flutter_osmanli/controller/authController.dart';
 import 'package:flutter_osmanli/donemler/donem_butonlar.dart';
 import 'package:flutter_osmanli/hive_page.dart';
@@ -105,7 +106,7 @@ class _TabbBarState extends State<TabbBar> {
                         ],
                       ),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Note()));
                       },
                     ),
                   ]),
@@ -131,8 +132,10 @@ class _TabbBarState extends State<TabbBar> {
                       ],
                     ),
                   ),
+                  
                 ],
               ),
+<<<<<<< Updated upstream
 
                ExpansionTile(
                   title: const Row(
@@ -157,17 +160,38 @@ class _TabbBarState extends State<TabbBar> {
           /*    ExpansionTile(title: const Text('Dönem Testleri'), children: [
                 ListTile(
                 
+=======
+        
+
+ ExpansionTile(
+>>>>>>> Stashed changes
                   title: const Row(
                     children: [
-                       Icon(Icons.insights),
-                      Text('Dönem Testleri'),
+                      Icon(Icons.book),
+                      Text("Çalışma Teknikleri"),
                     ],
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ]),*/
+                  children: [
+                    ListTile(
+                      title: const Row(
+                        children: [
+                          Icon(Icons.addchart),
+                          Text('Pomodoro Tekniği'),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AlarmManager()));
+                      },
+                    ),
+                  ]),
+
+
+
+
+
+
+
+
             ],
           ),
         ),

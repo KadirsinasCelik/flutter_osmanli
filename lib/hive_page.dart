@@ -2,39 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_osmanli/theme/theme.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-void main() async {
-  await Hive.initFlutter();
-  await Hive.openBox('note_box');
-
-  runApp(const Note());
-}
-
 class Note extends StatelessWidget {
   const Note({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'KindaCode.com',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const HomePage(),
+      title: 'Yapılacaklar Listesi',
+      home: NotePage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class NotePage extends StatefulWidget {
+  const NotePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _NotePageState createState() => _NotePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NotePageState extends State<NotePage> {
   List<Map<String, dynamic>> _items = [];
-  final _shoppingBox = Hive.box('shopping_box');
+  final _notingBox = Hive.box('note_box');
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
 
@@ -45,8 +35,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _refreshItems() {
-    final data = _shoppingBox.keys.map((key) {
-      final value = _shoppingBox.get(key);
+    final data = _notingBox.keys.map((key) {
+      final value = _notingBox.get(key);
       return {"key": key, "name": value["name"], "quantity": value['quantity']};
     }).toList();
 
@@ -56,25 +46,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _createItem(Map<String, dynamic> newItem) async {
-    await _shoppingBox.add(newItem);
+    await _notingBox.add(newItem);
     _refreshItems();
   }
 
   Map<String, dynamic> _readItem(int key) {
-    final item = _shoppingBox.get(key);
+    final item = _notingBox.get(key);
     return item;
   }
 
   Future<void> _updateItem(int itemKey, Map<String, dynamic> item) async {
-    await _shoppingBox.put(itemKey, item);
+    await _notingBox.put(itemKey, item);
     _refreshItems();
   }
 
   Future<void> _deleteItem(int itemKey) async {
-    await _shoppingBox.delete(itemKey);
+    await _notingBox.delete(itemKey);
     _refreshItems();
     ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An item has been deleted')));
+        const SnackBar(content: Text('Notunuz silindi')));
   }
 
   void _showForm(BuildContext ctx, int? itemKey) async {
@@ -104,6 +94,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Card(
+              color: Colors.grey[500],
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -143,7 +134,7 @@ class _HomePageState extends State<HomePage> {
 
                 Navigator.of(context).pop();
               },
-              child: Text(itemKey == null ? 'Create New' : 'Update'),
+              child: Text(itemKey == null ? 'Not Ekle' : 'Güncelleme'),
             ),
             const SizedBox(height: 15),
           ],
@@ -156,8 +147,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: const [],
         backgroundColor: CustomTheme.lightTheme.primaryColor,
-        title: const Text('Yapılacaklar Listesi'),
+        title: const Center(child: Text('Yapılacaklar Listesi')),
       ),
       body: _items.isEmpty
           ? const Center(
@@ -171,7 +163,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (_, index) {
                 final currentItem = _items[index];
                 return Card(
-                  color: Colors.orange.shade100,
+                  color: CustomTheme.alternative.primaryColor,
                   margin: const EdgeInsets.all(10),
                   elevation: 3,
                   child: ListTile(
