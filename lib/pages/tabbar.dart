@@ -1,15 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_osmanli/alarm_manager.dart';
-import 'package:flutter_osmanli/controller/authController.dart';
-import 'package:flutter_osmanli/donemler/donem_butonlar.dart';
-import 'package:flutter_osmanli/hive_page.dart';
-import 'package:flutter_osmanli/homepage/home_page.dart';
-import 'package:flutter_osmanli/pages/profile.dart';
-import 'package:flutter_osmanli/pages/signIn.dart';
 import 'package:flutter_osmanli/pages/soru_kategori.dart';
 
+import '../controller/authController.dart';
+import '../donemler/donem_butonlar.dart';
+import '../hive_page.dart';
+import '../homepage/home_page.dart';
 import '../theme/theme.dart';
+import 'profile.dart';
+import 'signIn.dart';
 
 class TabbBar extends StatefulWidget {
   const TabbBar({Key? key}) : super(key: key);
@@ -52,16 +52,20 @@ class _TabbBarState extends State<TabbBar> {
               onPressed: () {
                 if (auth.currentUser == null) {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SignIn(controller: authController)));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          SignIn(controller: authController),
+                    ),
+                  );
                 } else {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Profile(auth: auth, controller: authController)));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Profile(auth: auth, controller: authController),
+                    ),
+                  );
                 }
               },
               icon: const Icon(Icons.person),
@@ -91,27 +95,31 @@ class _TabbBarState extends State<TabbBar> {
                 ),
               ),
               ExpansionTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.book),
-                      Text("Yapılacaklar Listesi"),
-                    ],
-                  ),
+                title: const Row(
                   children: [
-                    ListTile(
-                      title: const Row(
-                        children: [
-                          Icon(Icons.addchart),
-                          Text('Not Defteri'),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Note()));
-                      },
+                    Icon(Icons.book),
+                    Text("Yapılacaklar Listesi"),
+                  ],
+                ),
+                children: [
+                  ListTile(
+                    title: const Row(
+                      children: [
+                        Icon(Icons.addchart),
+                        Text('Not Defteri'),
+                      ],
                     ),
-                  ]),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Note()),
+                      );
+                    },
+                  ),
+                ],
+              ),
               ExpansionTile(
-                title:  const Row(
+                title: const Row(
                   children: [
                     Icon(Icons.light),
                     Text(" Uygulama Tema Ayarları"),
@@ -119,79 +127,48 @@ class _TabbBarState extends State<TabbBar> {
                 ),
                 children: [
                   ListTile(
-                  
                     title: Row(
                       children: [
                         IconButton(
-                        onPressed: toggleTheme,
-                        icon: Icon(isDarkTheme
-                            ? Icons.brightness_4
-                            : Icons.brightness_5)),
-                        InkWell(onTap: toggleTheme,
-                          child: const Text('Koyu tema / Normal tema ')),
+                          onPressed: toggleTheme,
+                          icon: Icon(isDarkTheme
+                              ? Icons.brightness_4
+                              : Icons.brightness_5),
+                        ),
+                        InkWell(
+                          onTap: toggleTheme,
+                          child:
+                              const Text('Koyu tema / Normal tema '),
+                        ),
                       ],
                     ),
                   ),
-                  
                 ],
               ),
-<<<<<<< Updated upstream
-
-               ExpansionTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.account_tree_rounded),
-                      Text("Ders Çlışma Teknikleri"),
-                    ],
-                  ),
+              ExpansionTile(
+                title: const Row(
                   children: [
-                    ListTile(
-                      title: const Row(
-                        children: [
-                          Icon(Icons.lock_clock),
-                          Text('Pomodoro'),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
-                      },
+                    Icon(Icons.account_tree_rounded),
+                    Text("Ders Çalışma Teknikleri"),
+                  ],
+                ),
+                children: [
+                  ListTile(
+                    title: const Row(
+                      children: [
+                        Icon(Icons.lock_clock),
+                        Text('Pomodoro'),
+                      ],
                     ),
-                  ]),
-          /*    ExpansionTile(title: const Text('Dönem Testleri'), children: [
-                ListTile(
-                
-=======
-        
-
- ExpansionTile(
->>>>>>> Stashed changes
-                  title: const Row(
-                    children: [
-                      Icon(Icons.book),
-                      Text("Çalışma Teknikleri"),
-                    ],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AlarmManager()),
+                      );
+                    },
                   ),
-                  children: [
-                    ListTile(
-                      title: const Row(
-                        children: [
-                          Icon(Icons.addchart),
-                          Text('Pomodoro Tekniği'),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AlarmManager()));
-                      },
-                    ),
-                  ]),
-
-
-
-
-
-
-
-
+                ],
+              ),
             ],
           ),
         ),
