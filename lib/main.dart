@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_osmanli/api/firebase_api.dart';
 import 'package:flutter_osmanli/firebase_options.dart';
 import 'package:flutter_osmanli/pages/tabbar.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -12,7 +13,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('shopping_box');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  
+  await FirebaseApi().initNotifications();
 
   runApp(const MyApp());
 }

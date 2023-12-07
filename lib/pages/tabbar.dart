@@ -112,7 +112,7 @@ class _TabbBarState extends State<TabbBar> {
               ExpansionTile(
                 title:  const Row(
                   children: [
-                    Icon(Icons.abc_outlined),
+                    Icon(Icons.light),
                     Text(" Uygulama Tema Ayarları"),
                   ],
                 ),
@@ -133,6 +133,27 @@ class _TabbBarState extends State<TabbBar> {
                   ),
                 ],
               ),
+
+               ExpansionTile(
+                  title: const Row(
+                    children: [
+                      Icon(Icons.account_tree_rounded),
+                      Text("Ders Çlışma Teknikleri"),
+                    ],
+                  ),
+                  children: [
+                    ListTile(
+                      title: const Row(
+                        children: [
+                          Icon(Icons.lock_clock),
+                          Text('Pomodoro'),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
+                      },
+                    ),
+                  ]),
           /*    ExpansionTile(title: const Text('Dönem Testleri'), children: [
                 ListTile(
                 
