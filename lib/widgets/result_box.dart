@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osmanli/utilities/constants.dart';
 
+import '../pages/tabbar.dart';
+
 class ResultBox extends StatelessWidget {
   const ResultBox({
-    Key? key,
+    super.key,
     required this.result,
     required this.questionLenght,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final int result;
   final int questionLenght;
@@ -61,8 +63,30 @@ class ResultBox extends StatelessWidget {
                 onTap: onPressed,
                 child: const Card(
                   color: Colors.transparent,
-                  child: Text('Yeniden Başla',style: TextStyle(fontSize: 20,color: Colors.cyanAccent),)),
-              )
+                  child: Text('Yeniden Başla',style: TextStyle(fontSize: 20,color: Colors.cyanAccent),
+                  )
+                  ),
+              ),
+
+              const SizedBox(height: 10,),
+
+              GestureDetector(
+  onTap: () {
+    Navigator.of(context).pop(); // ResultBox sayfasını kapat
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const TabbBar()),
+      (route) => false, // Tüm geçmişi temizle
+    );
+  },
+  child: const Card(
+    color: Colors.transparent,
+    child: Text(
+      'Ana Sayfaya Dön',
+      style: TextStyle(fontSize: 18, color: Colors.cyanAccent),
+    ),
+  ),
+),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter_osmanli/notification_service.dart';
+import 'package:flutter_osmanli/notification/notification_service.dart';
 
 class TimerService {
   static final TimerService _instance = TimerService._internal();

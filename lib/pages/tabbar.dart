@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_osmanli/alarm_manager.dart';
+import 'package:flutter_osmanli/note/alarm_manager.dart';
 import 'package:flutter_osmanli/pages/soru_kategori.dart';
 
 import '../controller/authController.dart';
 import '../donemler/donem_butonlar.dart';
-import '../hive_page.dart';
+import '../note/hive_page.dart';
 import '../homepage/home_page.dart';
 import '../theme/theme.dart';
 import 'profile.dart';
 import 'signIn.dart';
 
 class TabbBar extends StatefulWidget {
-  const TabbBar({Key? key}) : super(key: key);
+  const TabbBar({super.key});
 
   @override
   State<TabbBar> createState() => _TabbBarState();

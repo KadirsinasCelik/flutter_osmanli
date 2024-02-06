@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -15,7 +17,7 @@ Future<Map<String, dynamic>> databaseGetAllPeriods() async {
       mapVeri[docSnapshot.id] = docSnapshot.data();
     }
   } catch (e) {
-    print("Error completing: $e");
+    log("Error completing: $e");
   }
 
   return mapVeri;
@@ -48,7 +50,7 @@ Future<Map<String, dynamic>> databaseGetAllPadisahWithPeriod(int period) async {
       mapVeri['$i'] = docSnapshot.data();
     }
   } catch (e) {
-    print("Error completing: $e");
+    log("Error completing: $e");
   }
 
   return mapVeri;
@@ -74,7 +76,7 @@ Future<Map<String, dynamic>> databaseGetAllSadrazamWithPeriod(int period) async 
       mapVeri['$i'] = docSnapshot.data();
     }
   } catch (e) {
-    print("Error completing: $e");
+    log("Error completing: $e");
   }
 
   return mapVeri;
@@ -99,7 +101,7 @@ Future<Map<String, dynamic>> databaseGetAllWarWithPeriod(int period) async {
       mapVeri['$i'] = docSnapshot.data();
     }
   } catch (e) {
-    print("Error completing: $e");
+    log("Error completing: $e");
   }
   return mapVeri;
 }
@@ -123,7 +125,7 @@ Future<Map<String, dynamic>> databaseGetAllEpochWithPeriod(int period) async {
       mapVeri['$i'] = docSnapshot.data();
     }
   } catch (e) {
-    print("Error completing: $e");
+    log("Error completing: $e");
   } 
   return mapVeri;
 }

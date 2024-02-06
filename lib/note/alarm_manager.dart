@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_osmanli/timer_service.dart';
+import 'package:flutter_osmanli/note/timer_service.dart';
+import 'package:flutter_osmanli/utilities/constants.dart';
 
 class AlarmManager extends StatefulWidget {
-  const AlarmManager({Key? key}) : super(key: key);
+  const AlarmManager({super.key});
 
   @override
   State<AlarmManager> createState() => _AlarmManagerState();
@@ -20,6 +21,7 @@ class _AlarmManagerState extends State<AlarmManager> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Center(child: Text("Pomodoro Vakti")),
         backgroundColor: const Color.fromARGB(255, 46, 204, 113),
@@ -30,7 +32,7 @@ class _AlarmManagerState extends State<AlarmManager> {
           children: [
             const SizedBox(height: 20,),
             const Card(
-              color: Color.fromARGB(255, 46, 204, 113),
+              color: Color.fromARGB(255, 134, 236, 177),
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
@@ -56,17 +58,29 @@ class _AlarmManagerState extends State<AlarmManager> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildButton('Başlat', () {
-                  _timerService.startTimer();
-                }),
+                buildButton(
+                  'Başlat',
+                  () {
+                    _timerService.startTimer();
+                  },
+                  Colors.green, 
+                ),
                 const SizedBox(width: 20.0),
-                buildButton('Durdur', () {
-                  _timerService.stopTimer();
-                }),
+                buildButton(
+                  'Durdur',
+                  () {
+                    _timerService.stopTimer();
+                  },
+                  Colors.green, 
+                ),
                 const SizedBox(width: 20.0),
-                buildButton('Sıfırla', () {
-                  _timerService.resetTimer();
-                }),
+                buildButton(
+                  'Sıfırla',
+                  () {
+                    _timerService.resetTimer();
+                  },
+                  Colors.green, 
+                ),
               ],
             ),
           ],
@@ -75,9 +89,12 @@ class _AlarmManagerState extends State<AlarmManager> {
     );
   }
 
-  Widget buildButton(String label, VoidCallback onPressed) {
+  Widget buildButton(String label, VoidCallback onPressed, Color backgroundColor) {
     return ElevatedButton(
       onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        primary: backgroundColor,
+      ),
       child: Text(label),
     );
   }

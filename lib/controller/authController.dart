@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthController {
@@ -10,7 +12,7 @@ class AuthController {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
     return auth;
   }
@@ -20,7 +22,7 @@ class AuthController {
       await auth.signInWithEmailAndPassword(
         email: email, password: password);
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
     return auth;
   }
@@ -28,9 +30,9 @@ class AuthController {
   Future<void> SignOut() async {
     try {
       await auth.signOut();
-      print("Çikiş Yapildi");
+      log("Çikiş Yapildi");
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osmanli/controller/authController.dart';
+import 'package:flutter_osmanli/main.dart';
 import 'package:flutter_osmanli/pages/tabbar.dart';
 import 'package:flutter_osmanli/storage/quiz_database.dart';
 
@@ -51,8 +52,7 @@ class _ProfileState extends State<Profile> {
                      // color: Colors.cyanAccent
                       ))),
           leading: IconButton(
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  const TabbBar())),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp(),)),
               icon: const Icon(Icons.home)),
           actions: [
             IconButton(

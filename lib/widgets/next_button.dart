@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NextButton extends StatelessWidget {
-  const NextButton({Key? key}):super (key: key);
+  const NextButton({super.key});
   
 
   

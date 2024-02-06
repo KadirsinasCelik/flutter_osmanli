@@ -5,7 +5,7 @@ import 'package:flutter_osmanli/storage/quiz_database.dart';
 import 'package:flutter_osmanli/widgets/result_box.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({Key? key, required this.donem}) : super(key: key);
+  const QuizPage({super.key, required this.donem});
   final String donem;
   @override
   State<QuizPage> createState() => _QuizPageState();

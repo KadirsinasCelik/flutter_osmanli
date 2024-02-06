@@ -3,7 +3,7 @@ import 'package:flutter_osmanli/theme/theme.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Note extends StatelessWidget {
-  const Note({Key? key}) : super(key: key);
+  const Note({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Note extends StatelessWidget {
 }
 
 class NotePage extends StatefulWidget {
-  const NotePage({Key? key}) : super(key: key);
+  const NotePage({super.key});
 
   @override
   _NotePageState createState() => _NotePageState();
@@ -94,7 +94,7 @@ class _NotePageState extends State<NotePage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Card(
-              color: Colors.grey[500],
+             
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -116,6 +116,7 @@ class _NotePageState extends State<NotePage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               onPressed: () {
                 if (itemKey == null) {
                   _createItem({
@@ -188,6 +189,7 @@ class _NotePageState extends State<NotePage> {
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
         onPressed: () => _showForm(context, null),
         child: const Icon(Icons.add),
       ),

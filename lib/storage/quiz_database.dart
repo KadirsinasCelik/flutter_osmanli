@@ -10,7 +10,7 @@ class QuizDatabase {
   FirebaseAuth auth = FirebaseAuth.instance; 
 
   Future<List<Soru>> getQuestions(String donem) async {
-    DatabaseReference ref = FirebaseDatabase.instance.ref("sorular/$donem");
+    DatabaseReference ref = database.ref("sorular/$donem");
     DataSnapshot snapshot = await ref.get();
     List<Soru> data = [];
 
@@ -40,7 +40,31 @@ class QuizDatabase {
     });
     return questionsPoint;
   }
-
+    Future<List<int>> getQuestionsListPoint() async {
+  List<int> questionsPointList = [];
+    var ref = storage.collection("questions");
+    var doc = ref.doc(auth.currentUser!.uid);
+    int questionsPoint = 0;
+    await doc.get().then((value) {
+      if (value.exists) {
+        for (var i = 1; i < 6; i++) {
+          var point = value.get("$i") as String;
+           questionsPoint = int.parse(point); 
+          questionsPointList.add(questionsPoint);
+        }
+      }
+    });
+    return questionsPointList;
+  }
+Future<int> getTestCount() async {
+     DatabaseReference ref = database.ref("sorular/");
+    DataSnapshot snapshot = await ref.get();
+    int count = 0;
+  snapshot.children.forEach((element) {
+    count += 1;
+  });
+  return count;
+}
   void updateFireStoreQuestionPoints(String donem, String newPoint) {
     var ref = storage.collection("questions");
     var doc = ref.doc(auth.currentUser!.uid);

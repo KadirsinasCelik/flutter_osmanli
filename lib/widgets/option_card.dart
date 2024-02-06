@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_osmanli/utilities/constants.dart';
 
 class OptionCard extends StatelessWidget {
-  const OptionCard({Key? key, required this.option, required this.color, }):super(key:key);
+  const OptionCard({super.key, required this.option, required this.color, });
 final String option;
 final Color color;
 

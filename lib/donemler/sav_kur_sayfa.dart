@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SavKurSayfa extends StatefulWidget {
-  const SavKurSayfa({Key? key, required this.infoText, required this.photo}) : super(key: key);
+  const SavKurSayfa({super.key, required this.infoText, required this.photo});
   final String infoText;
   final Image photo;
 

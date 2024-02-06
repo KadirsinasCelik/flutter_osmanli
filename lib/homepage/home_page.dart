@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -29,8 +29,11 @@ class _AnaSayfa extends State<AnaSayfa> {
         title: const Center(
           child: Text(
             "Ana Sayfa",
-            style:
-                TextStyle(color: Colors.cyanAccent, fontFamily: "Sacramento",fontSize: 30,fontWeight:FontWeight.w900 ),
+            style: TextStyle(
+                color: Colors.cyanAccent,
+                fontFamily: "Sacramento",
+                fontSize: 30,
+                fontWeight: FontWeight.w900),
           ),
         ),
         backgroundColor: Colors.blueGrey[800],
@@ -76,7 +79,8 @@ class _AnaSayfa extends State<AnaSayfa> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     textAlign: TextAlign.center,
-                    """Osmanlı Ansiklopedisi Uygulaması, içerisinde Osmanlı Devleti ile ilgili kategoriler içeren ve de bu kategorilerle alakalı mini testlerin bulunduğu öğretici ve bilgilendirici bir uygulamadır. Kategoriler içerisinde; padişahlar, önemli devlet adamları(sadrazam ve vezirler gibi) ,önemli savaşlar, özetlenmiş kısa tarih gibi kategorileriler bulunmaktadır.""",                    style: TextStyle(
+                    """Osmanlı Ansiklopedisi Uygulaması, içerisinde Osmanlı Devleti ile ilgili kategoriler içeren ve de bu kategorilerle alakalı mini testlerin bulunduğu öğretici ve bilgilendirici bir uygulamadır. Kategoriler içerisinde; padişahlar, önemli devlet adamları(sadrazam ve vezirler gibi) ,önemli savaşlar, özetlenmiş kısa tarih gibi kategorileriler bulunmaktadır.""",
+                    style: TextStyle(
                         fontStyle: FontStyle.italic, color: Colors.cyan),
                   ),
                 ),

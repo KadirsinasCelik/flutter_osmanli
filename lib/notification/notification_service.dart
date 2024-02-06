@@ -9,7 +9,7 @@ class NotificationService {
     _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
     const InitializationSettings initializationSettings =
         InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: AndroidInitializationSettings('@mipmap/ic_launcher.png'),
     );
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
@@ -17,15 +17,16 @@ class NotificationService {
   static Future<void> showNotification(String title, String body) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      '150000',
+      '200000',
       'alarm_manager',
+      icon: "ic_notification",
       importance: Importance.max,
       priority: Priority.high,
     );
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
     await _flutterLocalNotificationsPlugin.show(
-      150000,
+      200000,
       title,
       body,
       platformChannelSpecifics,
@@ -34,4 +35,3 @@ class NotificationService {
 }
 
 
-//
